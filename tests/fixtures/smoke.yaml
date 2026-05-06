@@ -1,0 +1,4 @@
+kind: pipe_junction_incompressible_smoke
+name: test smoke
+max_compute_cpu_hours: 0.5
+poll_interval_s: 0
