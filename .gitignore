@@ -1,0 +1,13 @@
+.venv/
+.pytest_cache/
+.pytest_basetemp/
+.mypy_cache/
+.ruff_cache/
+.sim/
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.py[cod]
+run.out.log
+run.err.log

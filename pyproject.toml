@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sim-plugin-simscale"
+version = "0.1.0"
+description = "SimScale cloud backend driver for sim-cli, distributed as a plugin"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [{ name = "svd-ai-lab" }]
+keywords = ["simscale", "cfd", "cloud", "simulation", "sim-cli", "plugin"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: Apache Software License",
+]
+dependencies = [
+    "sim-cli-core>=0.3.4",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8",
+    "build>=1.0",
+]
+
+[project.entry-points."sim.drivers"]
+simscale = "sim_plugin_simscale:SimScaleDriver"
+
+[project.entry-points."sim.skills"]
+simscale = "sim_plugin_simscale:skills_dir"
+
+[project.entry-points."sim.plugins"]
+simscale = "sim_plugin_simscale:plugin_info"
+
+[project.urls]
+Homepage = "https://github.com/svd-ai-lab/sim-plugin-simscale"
+Repository = "https://github.com/svd-ai-lab/sim-plugin-simscale"
+Issues = "https://github.com/svd-ai-lab/sim-plugin-simscale/issues"
+Changelog = "https://github.com/svd-ai-lab/sim-plugin-simscale/blob/main/CHANGELOG.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sim_plugin_simscale"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "integration: tests that call the live SimScale API or start cloud compute",
+]
