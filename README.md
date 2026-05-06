@@ -17,7 +17,7 @@ SimScale access, API keys, and compute credits are not bundled. See
 This is an initial alpha. It has unit coverage and one real-cloud smoke path
 for accounts with SimScale API access and enough credits.
 
-The only built-in recipe in `0.1.0` is:
+The only built-in recipe in `0.1.x` is:
 
 ```yaml
 kind: pipe_junction_incompressible_smoke
@@ -31,10 +31,16 @@ probe-point CSV.
 
 ## Install
 
-GitHub install is the primary channel for `0.1.0`:
+PyPI is the primary channel:
 
 ```bash
-uv pip install "git+https://github.com/svd-ai-lab/sim-plugin-simscale.git@v0.1.0"
+uv pip install sim-plugin-simscale
+```
+
+For an exact release:
+
+```bash
+uv pip install "sim-plugin-simscale==0.1.1"
 ```
 
 For source testing against the current main branch:
