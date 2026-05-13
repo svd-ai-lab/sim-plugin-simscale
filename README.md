@@ -31,22 +31,25 @@ probe-point CSV.
 
 ## Install
 
-PyPI is the primary channel:
+Add the runtime and plugin to the same uv project:
 
 ```bash
-uv pip install sim-plugin-simscale
+uv add sim-cli-core sim-plugin-simscale
+uv run sim plugin sync-skills --target .agents/skills --copy
+uv run sim check simscale
+uv run sim plugin doctor simscale --deep
 ```
 
 For an exact release:
 
 ```bash
-uv pip install "sim-plugin-simscale==0.1.1"
+uv add sim-cli-core "sim-plugin-simscale==0.1.1"
 ```
 
 For source testing against the current main branch:
 
 ```bash
-uv pip install "git+https://github.com/svd-ai-lab/sim-plugin-simscale.git@main"
+uv add sim-cli-core "sim-plugin-simscale @ git+https://github.com/svd-ai-lab/sim-plugin-simscale.git@main"
 ```
 
 ## Authentication
@@ -76,28 +79,28 @@ Never commit API keys. Rotate keys that were pasted into chat or logs.
 Check API access:
 
 ```bash
-sim check simscale
+uv run sim check simscale
 ```
 
 Start an API-backed session:
 
 ```bash
-sim connect --solver simscale --ui-mode no_gui
-sim inspect session.summary
-sim inspect simscale.spaces
+uv run sim connect --solver simscale --ui-mode no_gui
+uv run sim inspect session.summary
+uv run sim inspect simscale.spaces
 ```
 
 Run bounded JSON commands:
 
 ```bash
-sim exec '{"command": "list_projects"}'
-sim exec '{"command": "list_results", "project_id": "...", "simulation_id": "...", "run_id": "..."}'
+uv run sim exec '{"command": "list_projects"}'
+uv run sim exec '{"command": "list_results", "project_id": "...", "simulation_id": "...", "run_id": "..."}'
 ```
 
 Run the smoke recipe:
 
 ```bash
-sim run --solver simscale recipe.yaml
+uv run sim run --solver simscale recipe.yaml
 ```
 
 Artifacts are written under `.sim/runs/<run-id>/`:
